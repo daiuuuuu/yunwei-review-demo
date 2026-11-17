@@ -1,0 +1,224 @@
+/* ========== 令牌 ========== */
+:root {
+  --paper: #ffffff;
+  --line: #e8eaee;
+  --line-2: #f0f2f5;
+  --ink: #1a1d21;
+  --ink-2: #4a5058;
+  --ink-3: #8a919b;
+  --accent: #1f5fd1;
+  /* 只用三个语义色：危险 / 提示 / 信息，其余全是灰阶 */
+  --danger: #c0362c;
+  --warn: #b45309;
+  --info: #1f5fd1;
+  --mute: #8a919b;
+  --mute-2: #b6bcc4;
+  --tb: 150px;
+}
+
+/* ========== 基础 ========== */
+* { box-sizing: border-box; min-width: 0; }
+html, body { overflow-x: clip; max-width: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", "微软雅黑",
+    "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", sans-serif;
+  font-size: 13.5px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+button, input, select, textarea { font-family: inherit; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: none; margin: 0 auto; padding: 14px 28px; }
+.muted { color: var(--ink-3); font-size: 12px; }
+.spacer { flex: 1; }
+
+/* ========== 顶栏 ========== */
+.top { border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; gap: 10px; padding: 12px 28px; }
+.brand { font-size: 13.5px; font-weight: 600; letter-spacing: .3px; }
+.brand .dot { display: none; }
+
+/* ========== 区块（文档小节）========== */
+.card {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+  margin: 0;
+}
+.card:last-child { border-bottom: 0; }
+
+/* ========== 按钮 ========== */
+button {
+  font: inherit; font-size: 12.5px; font-weight: 500;
+  padding: 6px 13px; border-radius: 6px;
+  border: 1px solid var(--ink); background: var(--ink); color: #fff;
+  cursor: pointer; transition: opacity .12s, background .12s;
+}
+button:hover { opacity: .85; }
+button.ghost { background: transparent; color: var(--ink-2); border-color: var(--line); }
+button.ghost:hover { border-color: var(--ink-3); color: var(--ink); opacity: 1; }
+button.tiny { padding: 3px 9px; font-size: 12px; }
+
+/* ========== 表单 ========== */
+input, select, textarea {
+  width: 100%; max-width: 100%;
+  font: inherit; font-size: 13px; color: var(--ink);
+  background: transparent;
+  border: 0; border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  padding: 4px 2px;
+  line-height: 1.5;
+  min-height: 30px;
+  transition: border-color .12s;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none; border-bottom-color: var(--accent);
+}
+select {
+  padding-right: 22px;
+  line-height: normal;
+  height: 30px;
+  background: transparent;
+}
+textarea {
+  line-height: 1.7;
+  min-height: 34px;
+  padding: 4px 2px;
+  resize: vertical;
+}
+label { display: block; font-size: 11px; color: var(--ink-3); margin: 10px 0 2px; letter-spacing: .4px; }
+textarea { resize: vertical; line-height: 1.75; }
+
+/* ========== 登录 ========== */
+.login { max-width: 320px; margin: 14vh auto; }
+.login h2 { margin: 0 0 20px; font-size: 16px; font-weight: 600; letter-spacing: .3px; }
+.login button { width: 100%; margin-top: 20px; padding: 8px; }
+
+/* ========== 上传 ========== */
+.drop {
+  border: 1px dashed var(--line);
+  padding: 34px; text-align: center; color: var(--ink-3);
+  transition: border-color .15s, color .15s;
+}
+.drop:hover, .drop.hot { border-color: var(--accent); color: var(--accent); }
+
+/* ========== 表格 ========== */
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 10px 0; border-bottom: 1px solid var(--line-2); font-size: 13px; }
+th { color: var(--ink-3); font-weight: 400; font-size: 11.5px; letter-spacing: .4px; }
+tbody tr:hover { background: #fcfcfd; }
+
+.badge { font-size: 12px; color: var(--mute); }
+.b-done { color: var(--info); }
+.b-run { color: var(--warn); }
+.b-wait { color: var(--mute); }
+
+/* ========== 级别：一条明度梯度，不加新色相 ========== */
+.t-must { color: var(--danger); }
+.t-should { color: var(--warn); }
+.t-optional { color: var(--mute); }
+.t-human { color: var(--info); }
+.t-unknown { color: var(--mute-2); }
+.t-checklist { color: var(--info); }
+
+/* ========== 顶部信息栏 ========== */
+.topbar {
+  position: sticky; top: 0; z-index: 40;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+.topbar .wrap { padding: 12px 28px 10px; }
+.tb-top { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.tb-back { color: var(--ink-3); font-size: 15px; }
+.tb-name { font-size: 14px; font-weight: 600; letter-spacing: .2px; }
+.tb-meta { font-size: 11.5px; color: var(--ink-3); }
+.tb-gap { flex: 1; }
+.tb-top select { width: 112px; border-bottom-color: var(--line); }
+.tb-chips { margin-top: 10px; }
+.tb-reason { margin: 6px 0 0; }
+.tb-video { display: none; }
+
+/* ========== 筛选：细字 + 下划线 ========== */
+.chips { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+.chip {
+  background: none; border: 0; padding: 2px 0;
+  font-size: 12.5px; color: var(--ink-3); font-weight: 400;
+  border-bottom: 1.5px solid transparent; border-radius: 0;
+}
+.chip:hover { color: var(--ink); opacity: 1; }
+.chip.on { color: var(--ink); font-weight: 600; border-bottom-color: var(--ink); }
+.chip .muted { color: inherit; opacity: .55; font-size: 11px; }
+
+/* ========== 详情布局 ========== */
+.layout { display: flex; gap: 36px; align-items: flex-start; }
+.side { flex: 0 1 360px; max-width: 360px; position: sticky; top: calc(var(--tb) + 14px); }
+.side video { width: 100%; max-height: 580px; display: block; background: #000; }
+.side-note { font-size: 10.5px; margin: 8px 0 0; line-height: 2; letter-spacing: .3px; }
+.main { flex: 1; min-width: 0; }
+
+/* ========== 条目：纯文本块，只有细分隔线 ========== */
+#list { display: block; }
+.item {
+  padding: 16px 0 18px;
+  border-bottom: 1px solid var(--line-2);
+}
+.item:last-child { border-bottom: 0; }
+.item:hover { background: #fcfcfd; }
+.item.edited { background: #f8fbff; }
+
+.item-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.item-head .t-time { flex: 0 0 auto; width: auto; min-width: 96px; font-size: 12.5px; font-weight: 600; }
+.item-head .t-code { flex: 0 1 100px; width: auto; min-width: 70px; color: var(--ink-3); font-size: 12px; }
+.item-head .t-lv { flex: 0 0 auto; width: auto; font-size: 12.5px; font-weight: 500; color: var(--ink-2); border-bottom-color: transparent; }
+.item-head .t-lv:focus { border-bottom-color: var(--accent); color: var(--ink); }
+.item-head button { margin-left: auto; }
+
+.item-body-row { display: flex; gap: 20px; align-items: flex-start; margin-top: 8px; }
+.shot { flex: 0 0 148px; }
+.shot img { width: 148px; display: block; cursor: zoom-in; filter: saturate(.96); }
+.shot img:hover { filter: none; }
+.shot .muted { text-align: left; margin-top: 4px; font-size: 10.5px; letter-spacing: .3px; }
+.shot button.cap { width: 100%; margin-top: 5px; padding: 3px 0; font-size: 11px; color: var(--ink-3); border-color: var(--line); }
+.shot button.cap:hover { color: var(--accent); border-color: var(--accent); }
+.shot button.cap.del:hover { color: var(--danger); border-color: var(--danger); }
+.fields { flex: 1; min-width: 0; }
+
+textarea.ta {
+  font-size: 13px; line-height: 1.8; padding: 4px 2px;
+  border: 0; border-bottom: 1px solid var(--line);
+  background: transparent; resize: none; overflow: hidden; min-height: 34px;
+}
+textarea.ta:focus { background: #fcfcfd; }
+
+.row { display: flex; gap: 24px; }
+.row > * { flex: 1; }
+
+/* ========== 阶段 ========== */
+.stage { display: inline-block; margin-right: 10px; font-size: 11px; color: var(--mute); letter-spacing: .3px; }
+.stage.done { color: var(--info); }
+.stage.running { color: var(--warn); }
+
+/* 审核状态 */
+.st-ok { color: var(--info); font-weight: 600; }
+.st-draft { color: var(--warn); }
+.st-none { color: var(--mute-2); }
+
+/* ========== 手机 ========== */
+@media (max-width: 900px) {
+  .wrap { padding: 12px 16px; }
+  .topbar .wrap { padding: 10px 16px 8px; }
+  .tb-name { font-size: 13.5px; }
+  .tb-meta { width: 100%; }
+  .tb-video { display: block; margin-top: 8px; }
+  .tb-video video { width: 100%; max-height: 170px; background: #000; }
+  .side { display: none; }
+  .layout { flex-direction: column; }
+  .shot { flex: 0 0 104px; }
+  .shot img { width: 104px; }
+  .row { flex-direction: column; gap: 0; }
+}
