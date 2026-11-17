@@ -232,13 +232,12 @@ window.capTo = id => {
 };
 
 function frameUrl(time, txt) {
-  if (window.__demoFrame && (!CUR || !CUR.cid)) return window.__demoFrame(time);
   if (!CUR || !CUR.cid) return '';
   const all = String(time || '').match(/\d+(?:\.\d+)?/g) || [];
   if (!all.length) return '';
   let sec = parseFloat(all[0]);
   if (all.length > 1 && /结尾|落版/.test(txt || '')) sec = parseFloat(all[all.length - 1]);
-  const n = Math.max(1, Math.round(sec * 10));
+  const n = Math.max(0, Math.round(sec)) * 10;  // demo: 帧只有整秒
   return `/frames/${CUR.cid}/f_${String(n).padStart(5, '0')}.jpg`;
 }
 

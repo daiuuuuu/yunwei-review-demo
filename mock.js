@@ -5,7 +5,7 @@
 
   function mk(name, i, concl, items) {
     return {
-      id: 'demo' + i, name: name + '.mp4', cid: '', file: '',
+      id: 'demo' + i, name: name + '.mp4', cid: 'demo', file: 'demo.mp4',
       size: [219, 14, 25][i] * 1048576, createdAt: Date.now() - i * 86400000,
       status: 'done', stages: [{ name: '抽帧', status: 'done' }, { name: '转录', status: 'done' }, { name: '判定', status: 'done' }],
       verdict: {
