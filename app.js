@@ -132,7 +132,7 @@ function paint() {
         <button class="ghost" onclick="exportDoc('${j.id}')">导出 Word</button>
         <span class="muted" id="stat">${statText()}</span>
       </div>
-      <div class="tb-video"><video src="/uploads/${esc(j.file)}" controls></video></div>
+      <div class="tb-video"><video src="uploads/${esc(j.file)}" controls></video></div>
       <div class="chips tb-chips">${chips}<span style="flex:1"></span>
         <button class="ghost tiny" onclick="addItem('${FILTER}')">+ 加一条</button></div>
       <p class="tb-reason"><input id="reason" value="${esc(v.reason)}" placeholder="一句话理由"></p>
@@ -140,7 +140,7 @@ function paint() {
   </div>
   <div class="wrap layout">
     <aside class="side">
-      <video src="/uploads/${esc(j.file)}" controls></video>
+      <video src="uploads/${esc(j.file)}" controls></video>
       <p class="muted side-note">${stages}</p>
     </aside>
     <main class="main">
@@ -216,7 +216,7 @@ window.capTo = id => {
   const sec = v.currentTime || 0;
   if (!CUR.cid) return alert('这条片子没有对应案例帧，截不了');
   const txt = id + '_' + Math.round(sec * 10);
-  const capSrc = `/frames/${CUR.cid}/f_${String(Math.max(1, Math.round(sec * 10))).padStart(5, '0')}.jpg`;
+  const capSrc = `frames/${CUR.cid}/f_${String(Math.max(1, Math.round(sec * 10))).padStart(5, '0')}.jpg`;
   openAnnotator(capSrc, async dataUrl => {
     const d = await api('POST', `/api/jobs/${CUR.id}/shot`, { itemId: txt, data: dataUrl });
     if (!d.ok) return alert('保存失败');
@@ -238,7 +238,7 @@ function frameUrl(time, txt) {
   let sec = parseFloat(all[0]);
   if (all.length > 1 && /结尾|落版/.test(txt || '')) sec = parseFloat(all[all.length - 1]);
   const n = Math.max(0, Math.round(sec)) * 10;  // demo: 帧只有整秒
-  return `/frames/${CUR.cid}/f_${String(n).padStart(5, '0')}.jpg`;
+  return `frames/${CUR.cid}/f_${String(n).padStart(5, '0')}.jpg`;
 }
 
 function itemHtml(x) {
